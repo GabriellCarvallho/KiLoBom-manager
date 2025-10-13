@@ -1,0 +1,91 @@
+package modelo;
+
+public class Consumo {
+	private int id;
+	private String data;
+	private String descricao;
+	private double valorpago;
+	private Filial filial;
+	private Cliente cliente;
+	
+	
+	
+	
+	public Consumo (String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
+		this.data = data;
+		this.descricao = descricao;
+		this.valorpago = valorpago;
+		this.filial = filial;
+		this.cliente = cliente;
+		filial.adicionarItensConsumo(this);
+		cliente.adicionarItensConsumo(this);
+		
+	}
+	
+	
+    //	Coloquei esse construtor por conta do auto incrementação do professor que ainda será implementado
+	
+	public Consumo (int id, String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
+		this(data, descricao, valorpago, filial, cliente);
+		this.id = id;
+		filial.adicionarItensConsumo(this);
+		cliente.adicionarItensConsumo(this);
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + + this.id + " Cliente: " + cliente.getNome() + "Filial: " + filial.toString() + 
+				"Data do consumo: " + this.data + "Valor pago R$ " + this.valorpago;
+	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public double getValorpago() {
+		return valorpago;
+	}
+
+	public void setValorpago(double valorpago) {
+		this.valorpago = valorpago;
+	}
+
+	public Filial getFilial() {
+		return filial;
+	}
+
+	public void setFilial(Filial filial) {
+		this.filial = filial;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
+
+}
