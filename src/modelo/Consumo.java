@@ -1,14 +1,13 @@
 package modelo;
 
 public class Consumo {
+	
 	private int id;
 	private String data;
 	private String descricao;
 	private double valorpago;
 	private Filial filial;
 	private Cliente cliente;
-	
-	
 	
 	
 	public Consumo (String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
@@ -22,9 +21,7 @@ public class Consumo {
 		
 	}
 	
-	
     //	Coloquei esse construtor por conta do auto incrementação do professor que ainda será implementado
-	
 	public Consumo (int id, String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
 		this(data, descricao, valorpago, filial, cliente);
 		this.id = id;
@@ -39,8 +36,6 @@ public class Consumo {
 				"Data do consumo: " + this.data + "Valor pago R$ " + this.valorpago;
 	}
 	
-	
-
 	public int getId() {
 		return id;
 	}
@@ -86,6 +81,4 @@ public class Consumo {
 		this.cliente = cliente;
 	}
 	
-	
-
 }
