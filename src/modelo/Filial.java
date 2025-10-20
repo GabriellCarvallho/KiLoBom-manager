@@ -6,26 +6,24 @@ public class Filial {
 	
 	private int id;
 	private Localizacao localizacao;
-	private List<Consumo> itensConsumos;
+	private List<Consumo> consumos;
 	
-	public Filial(int id, Localizacao localizacao) {
-		this.id = id;
+	public Filial(Localizacao localizacao) {
 		this.localizacao = localizacao;
-		this.itensConsumos = new ArrayList<>();
-		
+		this.consumos = new ArrayList<>();
 	}
 	
 	@Override
 	public String toString() {
-		return "Id: " + this.id + " Localização em: " + this.localizacao + " itens de consumo: " + this.itensConsumos.size();
+		return "Id: " + this.id + " Localização em: " + this.localizacao + " itens de consumo: " + this.consumos.size();
 	}
 	
 	public void adicionarItensConsumo(Consumo c) { 
-		this.itensConsumos.add(c); 
+		this.consumos.add(c); 
 	}
 	
     public void removerItensConsumo(Consumo c) { 
-    	this.itensConsumos.remove(c); 
+    	this.consumos.remove(c); 
     }
 
 	public int getId() {
@@ -33,7 +31,7 @@ public class Filial {
 	}
 
 	public List<Consumo> getItensConsumos() {
-		return itensConsumos;
+		return consumos;
 	}
 	
 }

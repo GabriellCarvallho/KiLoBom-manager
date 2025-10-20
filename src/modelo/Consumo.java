@@ -21,19 +21,10 @@ public class Consumo {
 		
 	}
 	
-    //	Coloquei esse construtor por conta do auto incrementação do professor que ainda será implementado
-	public Consumo (int id, String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
-		this(data, descricao, valorpago, filial, cliente);
-		this.id = id;
-		filial.adicionarItensConsumo(this);
-		cliente.adicionarItensConsumo(this);
-		
-	}
-	
 	@Override
 	public String toString() {
-		return "Id: " + + this.id + " Cliente: " + cliente.getNome() + "Filial: " + filial.toString() + 
-				"Data do consumo: " + this.data + "Valor pago R$ " + this.valorpago;
+		return "Id: " + this.id + " Cliente: " + cliente.getNome() + " Filial: " + filial.toString() + 
+				" Data do consumo: " + this.data + " Valor pago R$ " + this.valorpago;
 	}
 	
 	public int getId() {
