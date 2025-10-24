@@ -1,53 +1,42 @@
 🍔 Rede Ki Lo Bom
 
-Projeto de Persistência de Objetos usando Java e db4o, com foco em modelar o sistema da rede Ki Lo Bom e aplicar CRUD, consultas e relacionamentos entre objetos.
+Projeto de Persistência de Objetos usando Java e db4o, modelando o sistema da rede Ki Lo Bom e aplicando operações CRUD, consultas e relacionamentos entre objetos.
 
 🎯 Objetivo
 
-Implementar um modelo orientado a objetos com db4o, explorando:
+Desenvolver um modelo orientado a objetos com db4o, explorando:
+  Relacionamentos N:N entre Cliente e Filial através de Consumo.
+  Operações CRUD completas (Criar, Ler, Atualizar, Apagar).
+  Consultas utilizando SODA (Simple Object Database Access).
 
-Relacionamentos N:N entre Cliente e Filial via Consumo;
+🧩 Tecnologias Utilizadas
 
-Operações CRUD completas;
-
-Consultas SODA.
-
-🧩 Tecnologias
-
-Java
-
+Java POO
 db4o
-
 SODA (Simple Object Database Access)
 
 🏗 Estrutura do Projeto
 
-Pacotes principais:
+O projeto está organizado em pacotes principais:
+  Pacote	Descrição
+  modelo	Classes de domínio (Cliente, Filial, Consumo, Localizacao)
+  util	Conexão e configuração do db4o
+  appconsole	Aplicações para CRUD e consultas
 
-modelo → classes de domínio (Cliente, Filial, Consumo, Localizacao)
-
-util → conexão e configuração do db4o
-
-appconsole → aplicações CRUD e consultas
-
+  
 🔍 Consultas Implementadas
 
-Consumos na data X
-
-Consumos do cliente X
-
-Clientes que consumiram em mais de N filiais
+  Consumos realizados em uma determinada data 
+  Consumos de um cliente X
+  Clientes que consumiram em mais de N filiais
 
 ⚙️ Requisitos Importantes
-
-Cascata configurada no Util.java
-
-Tratamento de objetos órfãos em Apagar.java
-
-Chaves imutáveis (cpf, id)
+  Cascata configurada em Util.java
+  Tratamento de objetos órfãos implementado em Apagar.java
+  Chaves imutáveis: CPF para clientes e ID para filiais/consumos
 
 👨‍💻 Autores
-
-Gabriel Pereira de Carvalho
-Daniel Lucas Alves da Silva 
-Projeto da disciplina de Persistência de Objetos – IFPB
+  Gabriel Pereira de Carvalho
+  Daniel Lucas Alves da Silva
+  
+Projeto desenvolvido para a disciplina Persistência de Objetos – IFPB
