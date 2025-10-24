@@ -1,6 +1,7 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Filial {
 	
@@ -15,7 +16,9 @@ public class Filial {
 	
 	@Override
 	public String toString() {
-		return "Id: " + this.id + " Localização em: " + this.localizacao + " itens de consumo: " + this.consumos.size();
+		return "Id: " + this.id + " Localização em: " + this.localizacao + " itens de consumo: " + this.consumos.stream().map((c) -> {
+			return c.getId();
+		}).collect(Collectors.toList());
 	}
 	
 	public void adicionarItensConsumo(Consumo c) { 
@@ -31,7 +34,7 @@ public class Filial {
 	}
 
 	public List<Consumo> getItensConsumos() {
-		return new ArrayList<>(this.itensConsumos);
+		return new ArrayList<>(this.consumos);
 	}
 	
 }

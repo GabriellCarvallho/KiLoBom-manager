@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 public class Cliente {
@@ -17,7 +18,7 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return "Cpf: " + this.cpf + " Nome: " + this.nome + " itens de consumo: " + consumos.size();
+		return "Cpf: " + this.cpf + " Nome: " + this.nome + " itens de consumo: " + consumos.stream().map((c) -> c.getId()).collect(Collectors.toList());
 	}
 	
 	public void adicionarItensConsumo(Consumo c) { 
@@ -32,6 +33,10 @@ public class Cliente {
 		return new ArrayList<Consumo>(consumos);
 	}
 
+	public void setConsumos(List<Consumo> consumos) {
+		this.consumos = consumos;
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}

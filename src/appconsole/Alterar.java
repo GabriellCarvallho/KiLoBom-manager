@@ -1,6 +1,7 @@
 package appconsole;
 
 import com.db4o.ObjectContainer;
+import com.db4o.query.Predicate;
 import com.db4o.query.Query;
 
 import modelo.Cliente;
@@ -11,53 +12,46 @@ import java.util.List;
 
 public class Alterar {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         System.out.println("Conectando ao banco...");
         ObjectContainer manager = Util.conectar();
 
         String cpf = "98765432100"; // Cliente a alterar
-        String novoNome = "Maria Silva";
-        int consumoIdPessoa = 1;
-
-        System.out.println("Buscando cliente com CPF: " + " e Consumo ID Usuário: " + consumoIdPessoa);
-
+        String cpf2 = "12345678900";
+        System.out.println("Buscando cliente com CPF: " + cpf);
+        
         Query q = manager.query();
         q.constrain(Cliente.class);
         q.descend("cpf").constrain(cpf);
-        List<Cliente> clientes = q.execute();
         
-        Query c = manager.query();
-        c.constrain(Consumo.class);
-        c.descend("id").constrain(consumoIdPessoa);
-        List<Consumo> cs = c.execute();
+        List<Cliente> cliente1List = q.execute();
         
+        Query q2 = manager.query();
+        q2.constrain(Cliente.class);
+        q2.descend("cpf").constrain(cpf2);
         
-
-        if (clientes.size() == 0 || cs.size() == 0) {
-            System.out.println("Cliente ou id Consumo não encontrado.");
+        List<Cliente> cliente2List = q2.execute();
+        
+        if (cliente1List.isEmpty() || cliente2List.isEmpty()) {
+            System.out.println("Clientes não encontrados.");
         } else {
-            Cliente cliente = clientes.get(0);
-            Consumo consumo = cs.get(0);
+            Cliente cliente = cliente1List.get(0);
+            Cliente cliente2 = cliente2List.get(0);
             
-            System.out.println("Cliente encontrado: " + cliente.getNome() + " | Consumos antes: " + cliente.getItensConsumos().size());
+            System.out.println("Cliente encontrado: " + cliente);
+            System.out.println("Cliente encontrado: " + cliente2);
             
-            if (cliente.getItensConsumos().contains(consumo)) {
-	            	cliente.removerItensConsumo(consumo);
-	            	consumo.setCliente(null);
-	            	cliente.setNome(novoNome);
-	            	manager.store(cliente);
-	                manager.commit();
-	                System.out.println("ID alvo: " + consumoIdPessoa + " removido com sucesso!! ");
-	                System.out.println("Cliente alterado para: " + cliente.getNome());
-	                System.out.println("Itens de Consumos restantes após: " + cliente.getItensConsumos().size());
-	                
-	          
-            }else {
-                System.out.println("OID consumo? " + consumoIdPessoa + " não estava conectado e associado a esse cliente.");
-           }
-
+            List<Consumo> temp = cliente.getItensConsumos();
+            cliente.setConsumos(cliente2.getItensConsumos());
+            cliente2.setConsumos(temp);
             
+            manager.store(cliente);
+            manager.store(cliente2);
+            manager.commit();
+            
+            System.out.println("Relacionamentos alterados");
         }
+
         Util.desconectar();
         System.out.println("Desconectado.");
     }

@@ -23,7 +23,7 @@ public class Consumo {
 	
 	@Override
 	public String toString() {
-		return "Id: " + this.id + " Cliente: " + cliente.getNome() + " Filial: " + filial.toString() + 
+		return "Id: " + this.id + " Cliente: " + cliente.getNome() + " Filial: " + filial.getId() + 
 				" Data do consumo: " + this.data + " Valor pago R$ " + this.valorpago;
 	}
 	
