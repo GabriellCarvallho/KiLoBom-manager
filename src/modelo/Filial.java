@@ -31,7 +31,7 @@ public class Filial {
 	}
 
 	public List<Consumo> getItensConsumos() {
-		return consumos;
+		return new ArrayList<>(this.itensConsumos);
 	}
 	
 }
