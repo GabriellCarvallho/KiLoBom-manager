@@ -5,9 +5,9 @@ public class Consumo {
 	private int id;
 	private String data;
 	private String descricao;
-	private double valorpago;
 	private Filial filial;
 	private Cliente cliente;
+	private double valorpago;
 	
 	
 	public Consumo (String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
@@ -19,12 +19,6 @@ public class Consumo {
 		filial.adicionarItensConsumo(this);
 		cliente.adicionarItensConsumo(this);
 		
-	}
-	
-	@Override
-	public String toString() {
-		return "Id: " + this.id + " Cliente: " + cliente.getNome() + " Filial: " + filial.getId() + 
-				" Data do consumo: " + this.data + " Valor pago R$ " + this.valorpago;
 	}
 	
 	public int getId() {
@@ -70,6 +64,15 @@ public class Consumo {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + 
+				" Cliente: " + cliente.getNome() + 
+				" Filial: " + filial.getId() + 
+				" Data do consumo: " + this.data + 
+				" Valor pago R$ " + this.valorpago;
 	}
 	
 }

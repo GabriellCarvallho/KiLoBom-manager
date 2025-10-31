@@ -9,11 +9,6 @@ public class Localizacao {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-	
-	@Override
-	public String toString() {
-		return "Localização: { Latitude: " + this.latitude + ", Longitude: " + this.longitude + "}";
-	}
 
 	public double getLatitude() {
 		return latitude;
@@ -29,6 +24,12 @@ public class Localizacao {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+	
+	@Override
+	public String toString() {
+		return "Latitude: " + this.latitude +
+				" Longitude: " + this.longitude;
 	}
 
 }

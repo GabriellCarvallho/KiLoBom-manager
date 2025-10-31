@@ -14,13 +14,6 @@ public class Filial {
 		this.consumos = new ArrayList<>();
 	}
 	
-	@Override
-	public String toString() {
-		return "Id: " + this.id + " Localização em: " + this.localizacao + " itens de consumo: " + this.consumos.stream().map((c) -> {
-			return c.getId();
-		}).collect(Collectors.toList());
-	}
-	
 	public void adicionarItensConsumo(Consumo c) { 
 		this.consumos.add(c); 
 	}
@@ -34,7 +27,14 @@ public class Filial {
 	}
 
 	public List<Consumo> getItensConsumos() {
-		return new ArrayList<>(this.consumos);
+		return this.consumos;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + 
+				" Localização: " + this.localizacao + 
+				" Consumos: " + this.consumos.stream().map((c) -> c.getId()).collect(Collectors.toList());
 	}
 	
 }

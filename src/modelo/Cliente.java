@@ -6,20 +6,15 @@ import java.util.ArrayList;
 
 public class Cliente {
 	
-	private List<Consumo> consumos;
 	private String cpf;
 	private String nome;
+	private List<Consumo> consumos;
 	
 	public Cliente(String cpf, String nome) {
         this.cpf = cpf;
         this.nome = nome;
         this.consumos = new ArrayList<>();
     }
-	
-	@Override
-	public String toString() {
-		return "Cpf: " + this.cpf + " Nome: " + this.nome + " itens de consumo: " + consumos.stream().map((c) -> c.getId()).collect(Collectors.toList());
-	}
 	
 	public void adicionarItensConsumo(Consumo c) { 
 		this.consumos.add(c); 
@@ -30,7 +25,7 @@ public class Cliente {
     }
 
 	public List<Consumo> getItensConsumos() {
-		return new ArrayList<Consumo>(consumos);
+		return this.consumos;
 	}
 
 	public void setConsumos(List<Consumo> consumos) {
@@ -47,6 +42,13 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	@Override
+	public String toString() {
+		return "CPF: " + this.cpf + 
+				" Nome: " + this.nome + 
+				" Consumos: " + consumos.stream().map((c) -> c.getId()).collect(Collectors.toList());
 	}
 
 }
