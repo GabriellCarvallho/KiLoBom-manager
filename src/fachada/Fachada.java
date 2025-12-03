@@ -25,7 +25,7 @@ public final class Fachada {
 	
 	private Fachada() {}
 	
-	public static void criarFilial(Localizacao localizacao) throws IllegalArgumentException {
+	public static void criarFilial(String nome, Localizacao localizacao) throws IllegalArgumentException {
 		filialRepositorio.conectar();
 		filialRepositorio.begin();
 		
@@ -35,7 +35,7 @@ public final class Fachada {
 			throw new IllegalArgumentException("Já existe uma filial nessa localização!");
 		}
 		
-		Filial filial = new Filial(localizacao);
+		 Filial filial = new Filial(nome, localizacao);
 		
 		filialRepositorio.persistir(filial);
 		filialRepositorio.commit();
@@ -217,4 +217,73 @@ public final class Fachada {
 		consumo.setCliente(cliente);
 		consumo.setFilial(filial);
 	}
+	
+	
+	public static void atualizarCliente(String cpf, String novoNome) throws IllegalArgumentException {
+		clienteRepositorio.conectar();
+		clienteRepositorio.begin();
+		
+		Optional<Cliente> optionalCliente = clienteRepositorio.ler(cpf);
+		
+		if (!optionalCliente.isPresent()) {
+			clienteRepositorio.desconectar();
+			throw new IllegalArgumentException("Cliente não encontrado");
+		}
+		
+		Cliente cliente = optionalCliente.get();
+		cliente.setNome(novoNome);
+		
+		clienteRepositorio.persistir(cliente);
+		clienteRepositorio.commit();
+		clienteRepositorio.desconectar();
+	}
+	
+	
+	
+	public static void atualizarFilial(int id, Localizacao novaLocalizacao) throws IllegalArgumentException  {
+		
+		filialRepositorio.conectar();
+		filialRepositorio.begin();
+		
+		Optional<Filial> optionalFilial = filialRepositorio.ler(id);
+		if (!optionalFilial.isPresent()) {
+            filialRepositorio.desconectar();
+            throw new IllegalArgumentException("Filial não encontrada!");
+        }
+        
+        Filial filial = optionalFilial.get();
+        filial.setLocalizacao(novaLocalizacao);
+        
+        filialRepositorio.persistir(filial);
+        filialRepositorio.commit();
+        filialRepositorio.desconectar();
+    
+		
+	}
+	public static void atualizarConsumo(int id, String novaData, String novaDescricao, double novoValor) 
+            throws IllegalArgumentException {
+        consumoRepositorio.conectar();
+        consumoRepositorio.begin();
+        
+        Optional<Consumo> optionalConsumo = consumoRepositorio.ler(id);
+        if (!optionalConsumo.isPresent()) {
+            consumoRepositorio.desconectar();
+            throw new IllegalArgumentException("Consumo não encontrado!");
+        }
+        
+        Consumo consumo = optionalConsumo.get();
+        
+        consumo.setData(novaData);
+        consumo.setDescricao(novaDescricao);
+        consumo.setValorpago(novoValor);
+        
+        consumoRepositorio.persistir(consumo);
+        consumoRepositorio.commit();
+        consumoRepositorio.desconectar();
+        
+        
+        
+	}
+	
+	
 }

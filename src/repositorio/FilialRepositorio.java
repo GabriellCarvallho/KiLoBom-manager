@@ -33,5 +33,14 @@ public class FilialRepositorio extends CRUDRepositorio<Filial>{
 		List<Filial> resultado = query.execute();
 		return resultado.stream().findFirst();
 	}
+	
+	public Optional<Filial> buscarPeloNome(String nome) {
+	    Query query = Util.conectar().query();
+	    query.constrain(Filial.class);
+	    query.descend("nome").constrain(nome);
+	    
+	    List<Filial> resultado = query.execute();
+	    return resultado.stream().findFirst();
+	}
 
 }

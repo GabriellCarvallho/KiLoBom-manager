@@ -7,9 +7,9 @@ public class Cadastrar {
 
     public static void main(String[] args) {
     	System.out.println("Cadastrando Filiais...");
-    	Fachada.criarFilial(new Localizacao(1, 1));
-    	Fachada.criarFilial(new Localizacao(2, 2));
-    	Fachada.criarFilial(new Localizacao(3, 3));
+    	Fachada.criarFilial("Filial Centro", new Localizacao(1, 1));
+    	Fachada.criarFilial("Filial Norte", new Localizacao(2, 2));
+    	Fachada.criarFilial("Filial Sul", new Localizacao(3, 3));
     	
     	System.out.println("Filiais cadastradas.");
     	System.out.println("Cadastrando clientes...");
