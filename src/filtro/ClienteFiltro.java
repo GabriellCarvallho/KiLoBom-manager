@@ -1,4 +1,4 @@
-package filtros;
+package filtro;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,11 +8,11 @@ import com.db4o.query.Evaluation;
 
 import modelo.Cliente;
 
-public class ClientesFiltro implements Evaluation {
+public class ClienteFiltro implements Evaluation {
 	
 	private final int quantidade;
 	
-	public ClientesFiltro(int quantidade) {
+	public ClienteFiltro(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -22,7 +22,7 @@ public class ClientesFiltro implements Evaluation {
 		
 		Set<Integer> filiais = new HashSet<>();
 	
-		cliente.getItensConsumos().forEach((consumo) -> filiais.add(consumo.getFilial().getId()));
+		cliente.getConsumos().forEach((consumo) -> filiais.add(consumo.getFilial().getId()));
 		
 		if (filiais.size() > quantidade) 
 			candidate.include(true);

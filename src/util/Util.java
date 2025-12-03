@@ -23,7 +23,7 @@ public final class Util {
 		config.common().objectClass(Cliente.class).cascadeOnUpdate(true);
         config.common().objectClass(Filial.class).cascadeOnUpdate(true);
         config.common().objectClass(Consumo.class).cascadeOnUpdate(true);
-        config.common().objectClass(Consumo.class).cascadeOnDelete(true);
+        config.common().objectClass(Consumo.class).cascadeOnDelete(false);
         config.common().objectClass(Localizacao.class).cascadeOnUpdate(true);
 		
 		manager = Db4oEmbedded.openFile(config, DB_FILE);
@@ -36,6 +36,10 @@ public final class Util {
 			manager.close();
 			manager = null;
 		}
+	}
+	
+	public static ObjectContainer getManager() {
+		return manager;
 	}
 
 }

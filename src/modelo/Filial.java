@@ -14,11 +14,11 @@ public class Filial {
 		this.consumos = new ArrayList<>();
 	}
 	
-	public void adicionarItensConsumo(Consumo c) { 
+	public void adicionarConsumo(Consumo c) { 
 		this.consumos.add(c); 
 	}
 	
-    public void removerItensConsumo(Consumo c) { 
+    public void removerConsumo(Consumo c) { 
     	this.consumos.remove(c); 
     }
 
@@ -26,7 +26,7 @@ public class Filial {
 		return id;
 	}
 
-	public List<Consumo> getItensConsumos() {
+	public List<Consumo> getConsumos() {
 		return this.consumos;
 	}
 	

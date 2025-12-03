@@ -10,14 +10,10 @@ public class Consumo {
 	private double valorpago;
 	
 	
-	public Consumo (String data, String descricao, double valorpago, Filial filial, Cliente cliente) {
+	public Consumo (String data, String descricao, double valorpago) {
 		this.data = data;
 		this.descricao = descricao;
 		this.valorpago = valorpago;
-		this.filial = filial;
-		this.cliente = cliente;
-		filial.adicionarItensConsumo(this);
-		cliente.adicionarItensConsumo(this);
 		
 	}
 	
@@ -71,8 +67,8 @@ public class Consumo {
 		return "Id: " + this.id + 
 				" Cliente: " + cliente.getNome() + 
 				" Filial: " + filial.getId() + 
-				" Data do consumo: " + this.data + 
-				" Valor pago R$ " + this.valorpago;
+				" Data do Consumo: " + this.data + 
+				" Valor Pago R$ " + this.valorpago;
 	}
 	
 }
